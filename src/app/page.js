@@ -1,113 +1,169 @@
+'use client'
 import Image from 'next/image'
+import LogoF from '@/components/LogoF'
+import { motion, AnimatePresence } from 'framer-motion'
+import { AppWindowMacIcon, Download, Github, LucideCode, Terminal } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
+import { useTheme } from 'next-themes'
+import Swal from 'sweetalert2'
+import HackerTerminalCode from '@/components/TerminalCode'
+import PortfolioIntroAnimation from '@/components/Animation'
 
-export default function Home() {
+const contexts = ['Étudiant en Informatique', 'Développeur Web', 'Programmeur', 'Kali User', '']
+const letters = "Fihaonantsoa".split("");
+const directions = ["top", "bottom", "left", "right", "top", "bottom", "left", "right", "top", "bottom", "left"];
+
+export default function Page() {
+  const [index, setIndex] = useState(0)
+  const themes = useTheme()
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % contexts.length)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
+
+
+  const getInitial = (dir) => {
+    switch (dir) {
+      case "top":
+        return { y: -200, opacity: 0 };
+      case "bottom":
+        return { y: 200, opacity: 0 };
+      case "left":
+        return { x: -200, opacity: 0 };
+      case "right":
+        return { x: 200, opacity: 0 };
+      default:
+        return {};
+    }
+  };
+
+  function showDev () {
+    //   title: "<span class='text-blue-500'>Developpement Web</span>",
+    //   html: <MenuHintDialog />,
+    //   icon: 'info',
+    //   showLoaderOnDeny: 'Oups !'
+    // })
+  }
+
+  const octogonPoints = `
+    30,0 70,0 100,30 100,70
+    70,100 30,100 0,70 0,30
+  `;
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <section className="dark:bg-gradient-to-b min-h-80 from-gray-900 bg-transparent bg-blue-500 to-gray-800 text-white bg-white px-6 py-12 flex flex-col items-center justify-center">
+      <div className="relative w-[120px] h-[120px] mb-10">
+        <motion.svg
+          viewBox="0 0 100 100"
+          className="absolute top-0 left-0 w-full h-full"
+        >
+          <motion.polygon
+            points={octogonPoints}
+            fill="none"
+            stroke="#38bdf8"
+            strokeWidth="4"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+          />
+        </motion.svg>
+
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold"
+          style={{fontFamily: 'Monotype Corsiva', color: "#38bdf8"}}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+        >
+          <LogoF size={120} />
+        </motion.div>
+      </div>
+      <div className="flex flex-wrap justify-center space-x-1 text-4xl font-bold">
+        {letters.map((char, i) => (
+          <motion.span
+            key={i}
+            style={{fontFamily: 'Monotype Corsiva', color: "#38bdf8"}}
+            initial={getInitial(directions[i % directions.length])}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 + i * 0.07 }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            {char}
+          </motion.span>
+        ))}
+      </div>
+
+      <div className=" w-full font-semibold text-xl text-blue-600 animate-bounce text-center mt-10">
+        °°°°°
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.5 }}
+          >
+            <sup>{contexts[index]}</sup>
+          </motion.span>
+        </AnimatePresence>°°°°°
+      </div>
+
+      <motion.div
+        className="grid grid-cols-2 mt-10 md:grid-cols-2 gap-4 mb-12"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 2 }}
+      >
+        <motion.a
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          href="/cv.pdf"
+          target='_blank'
+          rel='noopener noreferrer'
+          className="bg-blue-400 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition px-5 py-2 rounded-full flex items-center gap-2"
+        >
+          <Download size={18} /> Télécharger CV
+        </motion.a>
+        <motion.a
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          href="https://github.com/FIhaonantsoa"
+          className="bg-gray-400 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 transition px-5 py-2 rounded-full flex items-center gap-2"
+        >
+          <Github size={18} /> Mes Projets
+        </motion.a>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-5"
+        style={{fontFamily: 'Monotype Corsiva'}}
+      >
+        <div className='w-full flex justify-center items-center text-2xl p-5 transition-transform duration-500 bg-blue-400/70 dark:bg-blue-400/20 hover:scale-110 animate-bounce rounded-xl border-1 border-gray-300 shadow cursor-pointer dark:text-white'>
+          <LucideCode size={30} className='mx-3'/> 
+          Développement web
         </div>
+        <div className='w-full flex justify-center items-center text-2xl p-5 transition-transform duration-500 bg-blue-400/70 dark:bg-blue-400/20 hover:scale-110 md:animate-bounce rounded-xl border-1 border-gray-300 shadow cursor-pointer dark:text-white'>
+          <AppWindowMacIcon size={30} className='mx-3'/>
+          Application Desktop
+        </div>
+        <div className='w-full flex justify-center items-center text-2xl p-5 transition-transform duration-500 bg-blue-400/70 dark:bg-blue-400/20 hover:scale-110 md:animate-bounce rounded-xl border-1 border-gray-300 shadow cursor-pointer dark:text-white'>
+          <Terminal size={30} className='mx-3'/>
+          Algorithme
+        </div>
+        <div className='w-full flex justify-center items-center text-2xl p-5 transition-transform duration-500 bg-blue-400/70 dark:bg-blue-400/20 hover:scale-110 md:animate-bounce rounded-xl border-1 border-gray-300 shadow cursor-pointer dark:text-white'>
+          <Image src="/images/linux.png" width={30} height={30} alt='icone_linux' className='mx-2'/> 
+          Système Unix
+        </div>
+      </motion.div>
+      <div className="mt-10 mx-25 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] h-1">
+        <hr className="bg-white opacity-9"/>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </section>
   )
 }

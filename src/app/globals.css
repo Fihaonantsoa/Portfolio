@@ -25,3 +25,25 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+@layer utilities {
+  .stars-bg {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    background-size: 400% 400%;
+    animation: starsMove 100s linear infinite;
+  }
+
+  @keyframes starsMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+  }
+}
+
+.messenger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4343ac;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}

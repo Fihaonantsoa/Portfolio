@@ -1,0 +1,25 @@
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.shine-effect {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.group:hover .shine-effect {
+  animation: shine 0.8s ease-out forwards;
+  opacity: 1;
+}
