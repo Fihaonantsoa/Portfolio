@@ -9,7 +9,7 @@ const OtherSkillsSection = ({ autresCompetences = [] }) => {
         {autresCompetences.map((competence, index) => (
           <li
             key={index}
-            className="flex items-center gap-2 before:content-['▹'] before:text-blue-500"
+            className="flex items-center lg:mr-20 gap-2 before:content-['▹'] before:text-blue-500"
           >
             {competence}
           </li>

@@ -90,7 +90,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1 }}
-          className="group rounded-lg border border-transparent bg-green-300 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-green-400"
+          className="group rounded-lg border border-transparent bg-blue-300 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-blue-400"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             2025{' '}
@@ -109,7 +109,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1 }}
-          className="group rounded-lg border border-transparent bg-yellow-200 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-yellow-300"
+          className="group rounded-lg border border-transparent bg-blue-300 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-blue-400"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             2024{' '}
@@ -128,7 +128,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1 }}
-          className="group rounded-lg border border-transparent bg-pink-300 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-pink-400"
+          className="group rounded-lg border border-transparent bg-blue-300 px-5 dark:hover:bg-gray-800/20 py-4 transition-colors border-white border-1  text-gray-500 dark:text-white dark:bg-gray-800 hover:bg-blue-400"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             2023{' '}
@@ -150,7 +150,7 @@ export default function AboutPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full mx-5 px-5 lg:px-35 shadow-md p-4 gap-12"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full mx-20 px-5 lg:px-20 shadow-md p-4 gap-12"
       > 
         <SkillBar nom="Tailwindcss" pourcentage={90} />
         <SkillBar nom="PHP" pourcentage={80} />

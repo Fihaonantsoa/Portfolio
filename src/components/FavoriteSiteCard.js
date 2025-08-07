@@ -16,7 +16,7 @@ const FavoriteSiteCard = ({ name, url, Icon, delay = 0 }) => {
       viewport={{ once: true }}
     >
       <Icon className="w-5 h-5" />
-      <span className="text-sm font-medium flex-1">{name}</span>
+      <span className="text-sm font-medium flex-1 lg:mr-20">{name}</span>
       <ExternalLink className="w-4 h-4" />
     </motion.a>
   );
