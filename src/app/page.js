@@ -120,7 +120,7 @@ export default function Page() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.5 }}
-          href="/cv.pdf"
+          href="/CV_RAFANOMANANA_Ainamirindra_Fihaonantsoa.pdf"
           target='_blank'
           rel='noopener noreferrer'
           className="bg-blue-400 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition px-5 py-2 rounded-full flex items-center gap-2"
