@@ -83,9 +83,9 @@ export default function Footer() {
           </a>
         ))}
       </div>
-      <button onClick={() => setOpen(true)} className="hover:animate-bounce messenger transition">
+      {/* <button onClick={() => setOpen(true)} className="hover:animate-bounce messenger transition">
         <MessageSquare />
-      </button>
+      </button> */}
       
       <div className="w-full flex justify-center items-center my-5">
         <hr className='w-78 opacity-9'/>
