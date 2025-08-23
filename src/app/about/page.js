@@ -57,7 +57,7 @@ export default function AboutPage() {
             className='text-center text-white md:text-xl font-bold'
             style={{ textShadow: '0 0 5px gray', fontFamily: 'Arial Rounded MT' }}
           > 
-            Ainnamirindra Fihaonantsoa
+            Ainamirindra Fihaonantsoa
           </motion.h1>
         </div>
       </div>
